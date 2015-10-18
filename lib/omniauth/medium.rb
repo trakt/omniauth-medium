@@ -1,6 +1,6 @@
 require "omniauth/medium/version"
 
-module Omniauth
+module OmniAuth
   module Medium
     # Your code goes here...
   end
