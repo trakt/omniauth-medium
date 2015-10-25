@@ -1,8 +1,8 @@
 # OmniAuth::Medium
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/omniauth/medium`. To experiment with that code, run `bin/console` for an interactive prompt.
+An OmniAuth strategy for authenticating with the [Medium API](https://medium.com/developers/welcome-to-the-medium-api-3418f956552).
 
-TODO: Delete this and the text above, and describe your gem
+Before you can use this, you need to obtain API credentials from Medium.
 
 ## Installation
 
@@ -14,15 +14,33 @@ gem 'omniauth-medium'
 
 And then execute:
 
-    $ bundle
+```sh
+bundle
+```
 
 Or install it yourself as:
 
-    $ gem install omniauth-medium
+```sh
+gem install omniauth-medium
+```
 
 ## Usage
 
-TODO: Write usage instructions here
+### Rails
+
+```ruby
+Rails.application.config.middleware.use OmniAuth::Builder do
+  provider :medium, ENV["MEDIUM_CLIENT_ID"], ENV["MEDIUM_CLIENT_SECRET"]
+end
+```
+
+### Rack
+
+```ruby
+use OmniAuth::Builder do
+  provider :medium, ENV["MEDIUM_CLIENT_ID"], ENV["MEDIUM_CLIENT_SECRET"]
+end
+```
 
 ## Development
 
@@ -32,7 +50,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/omniauth-medium. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/penman/omniauth-medium. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](contributor-covenant.org) code of conduct.
 
 
 ## License
