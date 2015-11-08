@@ -1,0 +1,63 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.medium.com/v1/tokens
+    body:
+      encoding: UTF-8
+      string: client_id=[CLIENT_ID]&client_secret=[CLIENT_SECRET]&code=[AUTH_CODE]&grant_type=authorization_code&redirect_uri=http%3A%2F%2Flocalhost%3A4567
+    headers:
+      User-Agent:
+      - Faraday v0.9.2
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Server:
+      - cloudflare-nginx
+      Date:
+      - Sun, 08 Nov 2015 20:35:02 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '256'
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - __cfduid=d05481c881b6dcd05534333583ef14a811447014901; expires=Mon, 07-Nov-16
+        20:35:01 GMT; path=/; domain=.medium.com; HttpOnly
+      X-Powered-By:
+      - Soylent
+      Access-Control-Allow-Origin:
+      - "*"
+      X-Obvious-Info:
+      - 18340-40e9a8e,3f5841c
+      Link:
+      - <https://medium.com/humans.txt>; rel="humans"
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Expires:
+      - Thu, 09 Sep 1999 09:09:09 GMT
+      Pragma:
+      - no-cache
+      Tk:
+      - T
+      Strict-Transport-Security:
+      - max-age=15552000; includeSubDomains; preload
+      X-Content-Type-Options:
+      - nosniff
+      Cf-Ray:
+      - 24240fddfbcd34ac-LHR
+    body:
+      encoding: UTF-8
+      string: '{"token_type":"Bearer","access_token":"2cf2849db084fb07cf51fb9df92f136a9c2c8074ee2820e98fe7407ba74b99fa9","refresh_token":"227421c24e242747c8d806b3d41addd3f6d1aeaa2dbc603b7cb0b02bfd3d346e5","scope":["basicProfile","publishPost"],"expires_at":1452198901944}'
+    http_version: 
+  recorded_at: Sun, 08 Nov 2015 20:35:02 GMT
+recorded_with: VCR 2.9.3
