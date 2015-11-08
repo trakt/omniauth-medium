@@ -13,7 +13,11 @@ Gem::Specification.new do |spec|
   spec.homepage      = "https://github.com/penman/omniauth-medium"
   spec.license       = "MIT"
 
-  spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
+  spec.files         = `git ls-files -z`.split("\x0").reject do |f|
+    next if f.match(%r{^(test|spec|features|bin$)/})
+    next if f.match(%r{\bend_authorization.applescript$})
+    true
+  end
   spec.bindir        = "exe"
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]

@@ -1,0 +1,36 @@
+#!/usr/bin/env ruby
+$: << "#{__dir__}/../lib"
+
+require "omniauth/medium"
+require "dotenv"
+require "bundler"
+
+Bundler.require(:authorize)
+Dotenv.load
+include OmniAuth::Strategies
+OmniAuth.config.test_mode = true
+
+strategy = Medium.new(nil, ENV["CLIENT_ID"], ENV["CLIENT_SECRET"])
+
+auth = strategy.authorize_params.merge redirect_uri: "http://localhost:4567"
+url = strategy.client.auth_code.authorize_url(auth)
+
+Launchy.open(url)
+
+# This block will be triggered by the Medium redirection.
+get "/" do
+  puts params[:code]
+
+  env_path = "#{__dir__}/../.env"
+  env = File.read(env_path)
+  env.sub! /^AUTH_CODE=.*$/, "AUTH_CODE=#{params[:code]}"
+  File.write(env_path, env)
+
+  # On OS X, we can redirect focus back to Terminal.
+  if RUBY_PLATFORM["darwin"]
+    script = "#{__dir__}/../lib/omniauth/medium/end_authorization.applescript"
+    system "osascript", script
+  end
+
+  exit! 0
+end
