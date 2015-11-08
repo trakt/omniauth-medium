@@ -9,7 +9,7 @@ Before you can use this, you need to obtain API credentials from Medium.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'omniauth-medium'
+gem 'omniauth-medium', github: 'penman/omniauth-medium', tag: 'v0.1.0'
 ```
 
 And then execute:
